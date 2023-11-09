@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
-import { Animal, Drone } from './constants.ts'; // Update with the correct path
+import { Animal, Drone } from './constants.ts'; 
 
 const API_URL = 'https://api.htf-2023.int.icapps-projects.com';
 const ANIMAL_API_URL = `${API_URL}/animals`;
@@ -55,9 +55,10 @@ const Home = () => {
 
   return (
     <div>
-      <h1 id='kaart'>Kaart</h1>
+      <h1 id='kaart'>Map</h1>
       <MapContainer center={[-3.468931501428507, -62.20852666422792]} zoom={11.5} scrollWheelZoom={false}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {/* animals rendering map */}
         {animals.map((animal) => {
           const isInsideCircle = drones.some((drone) => {
             const distance = getDistanceFromLatLonInKm(animal.latitude, animal.longitude, drone.latitude, drone.longitude);
@@ -81,6 +82,7 @@ const Home = () => {
             </Marker>
           );
         })}
+        {/* drones rendering map */}
         {drones.map((drone) => (
           <Circle
             key={drone.id}

@@ -6,8 +6,8 @@ const Layout = () => {
     <>
       <body>
         <div class="navbar">
-          <a href="#home"><Link to="/">Home</Link></a>
-          <a href="#news"><Link to="/blogs">List</Link></a>
+          <a href="#home"><Link to="/">Map</Link></a>
+          <a href="#news"><Link to="/blogs">Animals</Link></a>
         </div>
         <div>
           <br />
