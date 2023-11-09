@@ -9,6 +9,7 @@ export const DRONES_API_URL = `${API_URL}/drones`;
 
 const Home = () => {
   const [animals, setAnimals] = useState<Animal[]>([]);
+  const [drones, setDrones] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,10 +22,19 @@ const Home = () => {
       }
     };
 
-    fetchData();
-  }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
+    const fetchDrones = async () => {
+      try {
+        const response = await fetch(DRONES_API_URL);
+        const data = await response.json();
+        setDrones(data);
+      } catch (error) {
+        console.error('Error fetching drone data:', error);
+      }
+    };
 
-  console.log(animals); // Log the animals array to the console to check if it's empty or not
+    fetchData();
+    fetchDrones();
+  }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
 
   return (
     <div>
@@ -46,6 +56,16 @@ const Home = () => {
             </Popup>
           </Marker>
         ))}
+        {drones.map((drone) => (
+        <Marker key={drone.id} position={[drone.latitude, drone.longitude]} icon={new L.Icon({iconUrl: 'https://cdn0.iconfinder.com/data/icons/drones-1/100/drone-512.png', iconSize: [25, 41], iconAnchor: [12, 41]})}>
+          <Popup>
+            <div>
+              <h2>{drone.name}</h2>
+              <p>Range: {drone.range} meters</p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
       </MapContainer>
     </div>
   );
