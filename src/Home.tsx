@@ -27,23 +27,27 @@ const Home = () => {
   console.log(animals); // Log the animals array to the console to check if it's empty or not
 
   return (
-    <MapContainer center={[-3.468931501428507, -62.20852666422792]} zoom={11.5} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {animals.map((animal) => (
-        <Marker key={animal.id} position={[animal.latitude, animal.longitude]}>
-          <Popup>
-            <div>
-              <h2>{animal.name}</h2>
-              <p>Type: {animal.type}</p>
-              <p>Gender: {animal.gender}</p>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <div>
+      <h1 id='kaart'>Kaart</h1>
+      <MapContainer center={[-3.468931501428507, -62.20852666422792]} zoom={11.5} scrollWheelZoom={false}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {animals.map((animal) => (
+          <Marker key={animal.id} position={[animal.latitude, animal.longitude]}>
+            <Popup>
+              <div>
+                <img src={`https://api.htf-2023.int.icapps-projects.com/${animal.image}`} alt={animal.name} style={{ width: '100px' }} />
+                <p>{animal.name}</p>
+                <p>Type: {animal.type}</p>
+                <p>Gender: {animal.gender}</p>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </div>
   );
 };
 
