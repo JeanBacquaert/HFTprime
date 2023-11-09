@@ -36,24 +36,28 @@ const Home = () => {
   }, []);
 
   return (
-    <MapContainer center={[-3.468931501428507, -62.20852666422792]} zoom={11.5} scrollWheelZoom={false}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {animals.map((animal) => (
-        <Marker key={animal.id} position={[animal.latitude, animal.longitude]} icon={new L.Icon({iconUrl: 'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png', iconSize: [40, 40], iconAnchor: [12, 41]})}>
-          <Popup>
-            <div>
-              <img src={`https://api.htf-2023.int.icapps-projects.com/${animal.image}`} alt={animal.name} style={{ width: '100px' }} />
-              <p>{animal.name}</p>
-              <p>Type: {animal.type}</p>
-              <p>Gender: {animal.gender}</p>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-      {drones.map((drone) => (
-        <Circle key={drone.id} center={[drone.latitude, drone.longitude]} radius={drone.range * 1000} fillColor="red" fillOpacity={0.2} />
-      ))}
-    </MapContainer>
+    <div>
+      <h1 id='kaart'>Kaart</h1>
+      <MapContainer center={[-3.468931501428507, -62.20852666422792]} zoom={11.5} scrollWheelZoom={false}>
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {animals.map((animal) => (
+          <Marker key={animal.id} position={[animal.latitude, animal.longitude]} icon={new L.Icon({iconUrl: 'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png', iconSize: [40, 40], iconAnchor: [12, 41]})}>
+            <Popup>
+              <div>
+                <img src={`https://api.htf-2023.int.icapps-projects.com/${animal.image}`} alt={animal.name} style={{ width: '100px' }} />
+                <p>{animal.name}</p>
+                <p>Type: {animal.type}</p>
+                <p>Gender: {animal.gender}</p>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+        {drones.map((drone) => (
+          <Circle key={drone.id} center={[drone.latitude, drone.longitude]} radius={drone.range * 1000} fillColor="red" fillOpacity={0.2} />
+        ))}
+      </MapContainer>
+    </div>
+    
   );
 };
 
