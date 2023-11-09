@@ -29,3 +29,11 @@ body {
   min-height: 100vh;
 }
 
+.leaflet-container {
+  width: 75%;
+  height: 600px;
+  margin-bottom: 25%;
+  margin-left: 12.5%;
+  margin-top: 7.5%;
+}
+
