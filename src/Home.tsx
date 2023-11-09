@@ -88,7 +88,7 @@ const Home = () => {
             key={drone.id}
             center={[drone.latitude, drone.longitude]}
             radius={drone.range * 1000}
-            fillColor="red"
+            fillColor="blue"
             fillOpacity={0.2}
           >
             <Popup>
